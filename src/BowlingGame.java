@@ -14,6 +14,7 @@ public class BowlingGame {
 			if(i==10){
 				frame = new Frame10(10);
 				frame.runrun();
+				break;
 			}
 			
 			frame = new Frame(i);

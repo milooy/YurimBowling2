@@ -88,7 +88,12 @@ public class Frame {
 
 		pointList.add(Integer.parseInt(rolledPin));
 		getFramePoint();
-		leftPins = 10-framePoint;
+		
+		if(framePart==3){											//맞나?
+			leftPins = 10-Integer.valueOf(rolledPin);
+		}else{
+			leftPins = 10-framePoint;
+		}
 		frameAliveStatus();
 		
 		pointStack[rollNum] = Integer.parseInt(rolledPin);	//포인트스택에 차곡차곡 포인트들을 집어넣는다. 

@@ -60,7 +60,7 @@ public class Frame10 extends Frame{
 			status = "STRIKE";
 			leftPins = 10;
 			return true;
-		} else if(framePart==2 && leftPins==0){
+		} else if(framePart==2 && rolledPin==10){
 			isSecondFrameStrike = true;
 			status = "STRIKE";
 			leftPins=10;
