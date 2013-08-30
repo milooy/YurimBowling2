@@ -25,14 +25,21 @@ public class Frame {
 	
 	public void runrun(){
 		while(frameAliveStatus()){		//프레임이 죽을때까지(false가 될때까지) 돈다. 
-			rollDisplayFrame();
 			frameAliveStatus();
+			rollDisplayFrame();
+
+//			Display.statusArray[frameNum] = status;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+//			Display.startNum[frameNum] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+//			if(frameNum!=1){
+//				display.getScore(frameNum-1);		//어디에놔야지..
+//			}
 			if(frameAliveStatus()==false){
-				System.out.println("---where to start?: " + rollNum);
 				System.out.println(status);
-				display.startNum[frameNum] = rollNum;
-				System.out.println("---where to start2?: " + display.startNum[frameNum-1]);
-				display.getScore(status, frameNum);		//어디에놔야지..
+				Display.statusArray[frameNum] = status;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+				Display.startNum[frameNum] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+				if(frameNum!=1){
+					display.getScore(frameNum-1);		//어디에놔야지..
+				}
 				return;
 			}
 		}
@@ -50,6 +57,13 @@ public class Frame {
 		
 		PointSymbol pointSymbol = new PointSymbol(pointList.get(framePart-1), status);
 		display.myStatus(frameNum, framePart, pointSymbol.getSymbol());	//화면을 보여줌.
+	
+//		System.out.println(status);
+//		Display.statusArray[frameNum] = status;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+//		Display.startNum[frameNum] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+//		if(frameNum!=1){
+//			display.getScore(frameNum-1);		//어디에놔야지..
+//		}
 	}
 	
 	public void getFramePoint(){
@@ -78,14 +92,14 @@ public class Frame {
 	
 	public void roll(String rolledPin) {
 		framePart++;
-		rollNum++;
+		rollNum++;	//한번씩 굴릴때마다 롤넘버 증가. 
 		
 		pointList.add(Integer.parseInt(rolledPin));
 		getFramePoint();
 		leftPins = 10-framePoint;
 		frameAliveStatus();
 		
-		pointStack[rollNum] = Integer.parseInt(rolledPin);			//될까?? 
+		pointStack[rollNum] = Integer.parseInt(rolledPin);	//포인트스택에 차곡차곡 포인트들을 집어넣는다.  
 	}
 	
 
