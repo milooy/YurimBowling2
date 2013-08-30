@@ -15,6 +15,8 @@ public class BowlingGame {
 				frame= new Frame10(i, bowlingGame);
 			
 			frame.runrun();	//false까지 돈다. 
+//			System.out.println("---where to start?: " + Frame.rollNum);
+
 		}
 	}
 

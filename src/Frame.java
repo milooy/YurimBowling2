@@ -14,6 +14,9 @@ public class Frame {
 	
 	String status;	//Strike, Spare, default 
 
+	static int[] pointStack = new int[21];	//매 굴린 포인트들이 하나씩 담기는 배열 
+	static int rollNum = -1;	//몇번 굴렸냐 
+
 	
 	Frame(int frameNum, BowlingGame bowlingGame){
 		this.frameNum = frameNum;
@@ -24,9 +27,15 @@ public class Frame {
 		while(frameAliveStatus()){		//프레임이 죽을때까지(false가 될때까지) 돈다. 
 			rollDisplayFrame();
 			frameAliveStatus();
-			if(frameAliveStatus()==false)
+			if(frameAliveStatus()==false){
+				System.out.println("---where to start?: " + rollNum);
+				System.out.println(status);
+				display.startNum[frameNum] = rollNum;
+				display.getScore(status, frameNum);		//어디에놔야지..
 				return;
+			}
 		}
+		
 	}
 	
 	public void rollDisplayFrame(){
@@ -84,6 +93,9 @@ public class Frame {
 	public void roll(String rolledPin) {
 		System.out.println("----roll start----");
 		framePart++;
+		
+		rollNum++;
+		
 		pointList.add(Integer.parseInt(rolledPin));
 		getFramePoint();
 		System.out.println("framePoint in roll: " + framePoint);
@@ -91,10 +103,10 @@ public class Frame {
 		System.out.println("leftPins in roll: " + leftPins);
 		frameAliveStatus();
 		
-
+		pointStack[rollNum] = Integer.parseInt(rolledPin);			//될까?? 
 		
 		System.out.println("----roll end----");
-
+		
 	}
 	
 
