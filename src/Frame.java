@@ -21,7 +21,7 @@ public class Frame {
 	}
 	
 	public void runrun(){
-		while(frameAliveStatus()){	
+		while(frameAliveStatus()){		//프레임이 죽을때까지(false가 될때까지) 돈다. 
 			rollDisplayFrame();
 			frameAliveStatus();
 			if(frameAliveStatus()==false)

@@ -9,10 +9,8 @@ public class Display {
 	public void myStatus(int frameNum, int framePart, String symbol){
 		if(framePart==1){
 			points.replace(4*frameNum-3, 4*frameNum-2, symbol);	//받은 포인트를 맞는 부분에 넣어준다.  
-			
 		} else{
 			points.replace(4*frameNum-1, 4*frameNum, symbol);	
-			
 		}
 		System.out.println(frames);
 		System.out.println(points);
