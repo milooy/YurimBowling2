@@ -8,8 +8,8 @@ public class Display {
 	static int finalScore;
 	int thisFramePoints;
 	int nextFramePoints;
-	int frameScore;
-	int[] startNum = new int[10];
+	static int frameScore;
+	static int[] startNum = new int[10];
 	
 	
 	
@@ -24,9 +24,13 @@ public class Display {
 		System.out.println(scores);
 		
 		System.out.println("____This is pointStack");
-		for(int i : Frame.pointStack){
-			System.out.println(i);
-		}
+		for(int i : Frame.pointStack)
+			System.out.print(i + " ");
+		System.out.println();
+		for(int i : startNum)
+			System.out.print(i + " ");
+		System.out.println();
+		
 	}
 	
 	public void getScore(String status, int frameNum){

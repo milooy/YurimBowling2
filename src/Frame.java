@@ -31,6 +31,7 @@ public class Frame {
 				System.out.println("---where to start?: " + rollNum);
 				System.out.println(status);
 				display.startNum[frameNum] = rollNum;
+				System.out.println("---where to start2?: " + display.startNum[frameNum-1]);
 				display.getScore(status, frameNum);		//어디에놔야지..
 				return;
 			}
@@ -45,24 +46,9 @@ public class Frame {
 		System.out.printf("현재 서있는 핀 수 : %d \n" , leftPins);
 		System.out.print("넘어뜨릴 핀 입력: ");
 		String rolledPin = scanner.nextLine();	//rolledPin에 넘어뜨릴 핀갯수 전달 
-		
-		System.out.println("before framePoint: "+ framePoint);
-
 		roll(rolledPin); 	//핀 넘어뜨림
 		
-		for(int i : pointList){
-			System.out.println(i);
-		}
-		
-		System.out.println("after framePoint: "+framePoint);
-		System.out.println("frameAlive(): " + frameAliveStatus());
-		System.out.println("leftPins: " + leftPins);
-		System.out.println("framePart : " + framePart);
-		System.out.println("status: " + status);
-		
 		PointSymbol pointSymbol = new PointSymbol(pointList.get(framePart-1), status);
-		pointSymbol.getSymbol();
-		
 		display.myStatus(frameNum, framePart, pointSymbol.getSymbol());	//화면을 보여줌.
 	}
 	
@@ -91,22 +77,15 @@ public class Frame {
 	}
 	
 	public void roll(String rolledPin) {
-		System.out.println("----roll start----");
 		framePart++;
-		
 		rollNum++;
 		
 		pointList.add(Integer.parseInt(rolledPin));
 		getFramePoint();
-		System.out.println("framePoint in roll: " + framePoint);
 		leftPins = 10-framePoint;
-		System.out.println("leftPins in roll: " + leftPins);
 		frameAliveStatus();
 		
 		pointStack[rollNum] = Integer.parseInt(rolledPin);			//될까?? 
-		
-		System.out.println("----roll end----");
-		
 	}
 	
 
