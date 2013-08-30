@@ -8,10 +8,11 @@ public class Frame {
 	int framePart=0;	//몇번째 투구 
 	int framePoint=0;	//프레임 총 포인트 
 	int leftPins = 10;
-	int rolledPin;
 	String symbol;	//심볼 
 	BowlingGame bowlingGame;
 	Display display = new Display();
+	
+	int rolledPin;
 	
 	String status;	//Strike, Spare, default 
 
@@ -19,17 +20,15 @@ public class Frame {
 	static int rollNum = -1;	//몇번 굴렸냐 
 
 	
-	Frame(int frameNum, BowlingGame bowlingGame){
+	Frame(int frameNum){
 		this.frameNum = frameNum;
-		this.bowlingGame = bowlingGame;
 	}
 	
 	public void runrun(){
 		while(frameAliveStatus()){		//프레임이 죽을때까지(false가 될때까지) 돈다. 
 			rollDisplayFrame();
 			frameAliveStatus();
-			System.out.println("!!status: " + status);
-			System.out.println("!!leftPins: " + leftPins);
+//			System.out.println(Display.scores);
 			
 			if(frameAliveStatus()==false){
 				Display.statusArray[frameNum] = status;	//상태 배열 .
@@ -52,6 +51,7 @@ public class Frame {
 		System.out.print("넘어뜨릴 핀 입력: ");
 		String rolledPin = scanner.nextLine();	//rolledPin에 넘어뜨릴 핀갯수 전달 
 		roll(rolledPin); 	//핀 넘어뜨림
+		this.rolledPin = Integer.valueOf(rolledPin);
 		
 
 		PointSymbol pointSymbol = new PointSymbol(pointList.get(framePart-1), status);

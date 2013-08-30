@@ -7,51 +7,78 @@ public class Frame10 extends Frame{
 	public boolean isSecondFrameStrike=false;
 	
 	int frame10Points;
-	int rolledPin;
 	
-	Frame10(int frameNum, BowlingGame bowlingGame) {
-		super(frameNum, bowlingGame);
+	Frame10(int frameNum) {
+		super(frameNum);
 	}
 	
 	//Override
 	public ArrayList<Integer> pointList = new ArrayList<Integer>();
 
-	public void getRoll(int rolledPin){
-		
-	}
+	int myRolledPin;
 	
-	public void runrun(){
-		rollDisplayFrame();
-		this.rolledPin = super.rolledPin;
-
-		frame10Points +=rolledPin;
-		display.getScore(9);		
-
-//		Display.scores.append(frame10Points);
-		System.out.println(Display.scores);
-		
-		for(int i : pointList)
-			System.out.println(i);
-		
-		for(int i=0; i<2; i++){
-			if(framePart==2 && status=="DEFAULT"){
-//				frame10Points +=rolledPin;
-//				Display.scores.append(frame10Points);
+//	public void runrun(){
+//		rollDisplayFrame();
+//		
+//		Display.statusArray[9] = status;	//상태 배열 .
+//		Display.startNum[9] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+//		display.getScore(9);
+//
+//		
+//		frame10Points +=rolledPin;
+//		System.out.println("~~~~frame10Points1: " + frame10Points);
+//		System.out.println(Display.scores);
+//		
+//		for(int i=0; i<2; i++){
+//			System.out.println("@status: " + status);
+//			System.out.println("@framePart: " + framePart);
+//			if(framePart==2 && status=="DEFAULT"){
+//
 //				System.out.println(Display.scores);
-				break;
-			}
-			if(leftPins==0)
-				leftPins=10;
-			
-			display.getScore(9);		
-
-			frame10Points +=rolledPin;
-//			Display.scores.append(frame10Points);
-			System.out.println(Display.scores);
-			rollDisplayFrame();
-			
-		}
+//				System.out.println("~~~~rolledPin: " + rolledPin);
+//
+//				break;
+//			}
+//
+//			if(leftPins==0)
+//				leftPins=10;
+//			
+//			frame10Points +=rolledPin;
+//			rollDisplayFrame();
+//
+//			System.out.println("~~~~frame10Points2: " + frame10Points);
+//			Display.scores.append(frame10Points+ " ");
+//			System.out.println(Display.scores);
+//			
+//		}
+//	}
+	
+	
+	public boolean frameAliveStatus(){
+		if(framePart==1 && leftPins ==0){
+			isFirstFrameStrike = true;
+			status = "STRIKE";
+			leftPins = 10;
+			return true;
+		} else if(framePart==2 && leftPins==0){
+			isSecondFrameStrike = true;
+			status = "STRIKE";
+			leftPins=10;
+			return true;
+		} else if(framePart==2 && leftPins!=0){
+			if(!isFirstFrameStrike)
+				return false;
+		}else if(framePart==3){
+			return false;
+		} 
+		
+		return true;
+		
 	}
+
+	
+	
+	
 	
 	
 //	Override

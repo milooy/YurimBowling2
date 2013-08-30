@@ -25,6 +25,7 @@ public class Display {
 		}
 		System.out.println(frames);
 		System.out.println(points);
+
 	}
 	
 	public void getScore(int frameNum){	//score 배열 만들기 
