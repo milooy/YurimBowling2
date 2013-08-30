@@ -16,9 +16,9 @@ public class BowlingGame {
 	public void start(){
 		bowlingGame = new BowlingGame();
 		
-		for(int i=1; i<=9; i++){
+		for(int i=1; i<=10; i++){
 			Frame frame = new Frame(i, bowlingGame);
-			frame.runrun();
+			frame.runrun();	//두번 돈다. 
 		}
 	}
 
