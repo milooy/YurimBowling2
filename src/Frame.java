@@ -8,13 +8,14 @@ public class Frame {
 	int framePart=0;	//몇번째 투구 
 	int framePoint=0;	//프레임 총 포인트 
 	int leftPins = 10;
+	int rolledPin;
 	String symbol;	//심볼 
 	BowlingGame bowlingGame;
 	Display display = new Display();
 	
 	String status;	//Strike, Spare, default 
 
-	static int[] pointStack = new int[21];	//매 굴린 포인트들이 하나씩 담기는 배열 
+	static int[] pointStack = new int[21];	//매 굴린 포인트들이 하나씩 담기는 배열
 	static int rollNum = -1;	//몇번 굴렸냐 
 
 	
@@ -25,20 +26,17 @@ public class Frame {
 	
 	public void runrun(){
 		while(frameAliveStatus()){		//프레임이 죽을때까지(false가 될때까지) 돈다. 
-			frameAliveStatus();
 			rollDisplayFrame();
-
-//			Display.statusArray[frameNum] = status;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
-//			Display.startNum[frameNum] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
-//			if(frameNum!=1){
-//				display.getScore(frameNum-1);		//어디에놔야지..
-//			}
+			frameAliveStatus();
+			System.out.println("!!status: " + status);
+			System.out.println("!!leftPins: " + leftPins);
+			
 			if(frameAliveStatus()==false){
-				System.out.println(status);
-				Display.statusArray[frameNum] = status;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+				Display.statusArray[frameNum] = status;	//상태 배열 .
 				Display.startNum[frameNum] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
 				if(frameNum!=1){
-					display.getScore(frameNum-1);		//어디에놔야지..
+					display.getScore(frameNum-1);		
+					System.out.println(Display.scores);	//scoreBoard 출력 
 				}
 				return;
 			}
@@ -54,16 +52,9 @@ public class Frame {
 		System.out.print("넘어뜨릴 핀 입력: ");
 		String rolledPin = scanner.nextLine();	//rolledPin에 넘어뜨릴 핀갯수 전달 
 		roll(rolledPin); 	//핀 넘어뜨림
-		
+
 		PointSymbol pointSymbol = new PointSymbol(pointList.get(framePart-1), status);
 		display.myStatus(frameNum, framePart, pointSymbol.getSymbol());	//화면을 보여줌.
-	
-//		System.out.println(status);
-//		Display.statusArray[frameNum] = status;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
-//		Display.startNum[frameNum] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
-//		if(frameNum!=1){
-//			display.getScore(frameNum-1);		//어디에놔야지..
-//		}
 	}
 	
 	public void getFramePoint(){
@@ -83,7 +74,7 @@ public class Frame {
 		} else if(framePart!=1 && leftPins==0){
 			status = "SPARE";
 			return false;
-		} else if(framePart==2){					//frame10은 상속받아서 이걸 오버라이드. 아님 인터페이스로 모드를 바꾸든가. 
+		} else if(framePart==2){				
 			status = "DEFAULT";
 			return false;
 		}
@@ -93,13 +84,13 @@ public class Frame {
 	public void roll(String rolledPin) {
 		framePart++;
 		rollNum++;	//한번씩 굴릴때마다 롤넘버 증가. 
-		
+
 		pointList.add(Integer.parseInt(rolledPin));
 		getFramePoint();
 		leftPins = 10-framePoint;
 		frameAliveStatus();
 		
-		pointStack[rollNum] = Integer.parseInt(rolledPin);	//포인트스택에 차곡차곡 포인트들을 집어넣는다.  
+		pointStack[rollNum] = Integer.parseInt(rolledPin);	//포인트스택에 차곡차곡 포인트들을 집어넣는다. 
 	}
 	
 

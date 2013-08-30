@@ -3,7 +3,6 @@ public class Display {
 	
 	static StringBuffer frames = new StringBuffer("| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10  |");
 	static StringBuffer points = new StringBuffer("|   |   |   |   |   |   |   |   |   |     |");
-//	static StringBuffer scores = new StringBuffer("|   |   |   |   |   |   |   |   |   |     |");
 	static StringBuffer scores = new StringBuffer("ScoreBoard: ");
 
 	static int finalScore;
@@ -18,40 +17,25 @@ public class Display {
 	public void myStatus(int frameNum, int framePart, String symbol){
 		if(framePart==1){
 			points.replace(4*frameNum-3, 4*frameNum-2, symbol);	//받은 포인트를 맞는 부분에 넣어준다.  
+		} else if(framePart==3 && frameNum==10){
+			points.replace(4*frameNum+1, 4*frameNum+2, symbol);	
+			
 		} else{
 			points.replace(4*frameNum-1, 4*frameNum, symbol);	
 		}
 		System.out.println(frames);
 		System.out.println(points);
-		System.out.println(scores);
-		
-		System.out.println("____This is pointStack");
-		for(int i : Frame.pointStack)
-			System.out.print(i + " ");
-		System.out.println();
-		for(int i : startNum)
-			System.out.print(i + " ");
-		System.out.println();
-		for(String i : statusArray)
-			System.out.print(i + " ");
-		System.out.println();
-		
 	}
 	
-	public void getScore(int frameNum){
-		System.out.println("status in getScore: " + statusArray[frameNum]);
-		
-		if(statusArray[frameNum]=="DEFAULT"){
-			System.out.println("lets plus 2 ");
+	public void getScore(int frameNum){	//score 배열 만들기 
+		if(statusArray[frameNum]=="DEFAULT"){	//default면 스타트넘버부터 2개 더해주기 
 			for(int i=startNum[frameNum-1]; i<startNum[frameNum-1]+2; i++){
 				frameScore+=Frame.pointStack[i];
 			}
-		} else if(statusArray[frameNum]=="STRIKE" || statusArray[frameNum]=="SPARE"){
-			System.out.println("lets plus 3 ");
+		} else if(statusArray[frameNum]=="STRIKE" || statusArray[frameNum]=="SPARE"){	//strike나 spare면 스타트넘버부터 3개 더해주기 
 			for(int i=startNum[frameNum-1]; i<startNum[frameNum-1]+3; i++)
 				frameScore+=Frame.pointStack[i];
 		}
-		System.out.println("@@frameScore : " + frameScore);
 		finalScore+=frameScore;
 		scores.append(finalScore + " ");	//받은 포인트를 맞는 부분에 넣어준다.  
 

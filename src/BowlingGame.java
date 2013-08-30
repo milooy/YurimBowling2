@@ -8,16 +8,18 @@ public class BowlingGame {
 	public void start(){
 		bowlingGame = new BowlingGame();
 		
-		for(int i=1; i<=10; i++){
+		for(int i=0; i<21; i++)			//Strike가 연속해서 나왔을때 오류 방지하기 위한 꼼수 
+			Frame.pointStack[i] = 10;
+		
+		for(int i=1; i<10; i++){
 			Frame frame = new Frame(i, bowlingGame);
-			
-			if(i==10)
-				frame= new Frame10(i, bowlingGame);
-			
 			frame.runrun();	//false까지 돈다. 
-//			System.out.println("---where to start?: " + Frame.rollNum);
-
 		}
+		System.out.println("~~~~~frame 9 end~~~~~~~");
+		Frame frame= new Frame10(10, bowlingGame);
+		frame.runrun();
+		
+		System.out.printf("						Game Over ^o^~ You got %d points!", Display.finalScore);
 	}
 
 
