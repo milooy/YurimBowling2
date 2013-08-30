@@ -7,6 +7,7 @@ public class Frame10 extends Frame{
 	public boolean isSecondFrameStrike=false;
 	
 	int frame10Points;
+	int rolledPin;
 	
 	Frame10(int frameNum, BowlingGame bowlingGame) {
 		super(frameNum, bowlingGame);
@@ -15,31 +16,37 @@ public class Frame10 extends Frame{
 	//Override
 	public ArrayList<Integer> pointList = new ArrayList<Integer>();
 
+	public void getRoll(int rolledPin){
+		
+	}
 	
 	public void runrun(){
 		rollDisplayFrame();
-		
+		this.rolledPin = super.rolledPin;
+
 		frame10Points +=rolledPin;
+		display.getScore(9);		
+
 //		Display.scores.append(frame10Points);
-		Display.scores.append(frame10Points);
 		System.out.println(Display.scores);
 		
-		System.out.println("@@status: " + status);
-		System.out.println("@@leftPins: " + leftPins);
-//		for(int i : pointList)
-//			System.out.println(i);
+		for(int i : pointList)
+			System.out.println(i);
 		
 		for(int i=0; i<2; i++){
 			if(framePart==2 && status=="DEFAULT"){
+//				frame10Points +=rolledPin;
+//				Display.scores.append(frame10Points);
+//				System.out.println(Display.scores);
 				break;
 			}
 			if(leftPins==0)
 				leftPins=10;
 			
-			System.out.println("@@status: " + status);
-			System.out.println("@@leftPins: " + leftPins);
+			display.getScore(9);		
+
 			frame10Points +=rolledPin;
-			Display.scores.append(frame10Points);
+//			Display.scores.append(frame10Points);
 			System.out.println(Display.scores);
 			rollDisplayFrame();
 			

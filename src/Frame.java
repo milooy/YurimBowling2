@@ -52,6 +52,7 @@ public class Frame {
 		System.out.print("넘어뜨릴 핀 입력: ");
 		String rolledPin = scanner.nextLine();	//rolledPin에 넘어뜨릴 핀갯수 전달 
 		roll(rolledPin); 	//핀 넘어뜨림
+		
 
 		PointSymbol pointSymbol = new PointSymbol(pointList.get(framePart-1), status);
 		display.myStatus(frameNum, framePart, pointSymbol.getSymbol());	//화면을 보여줌.
