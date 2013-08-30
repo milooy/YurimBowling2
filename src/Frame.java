@@ -33,8 +33,8 @@ public class Frame {
 			if(frameAliveStatus()==false){
 				Display.statusArray[frameNum] = status;	//상태 배열 .
 				Display.startNum[frameNum] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
+				display.getScore2(frameNum-1, rollNum);		
 				if(frameNum!=1){
-					display.getScore(frameNum-1);		
 					System.out.println(Display.scores);	//scoreBoard 출력 
 				}
 				return;
@@ -97,6 +97,8 @@ public class Frame {
 		frameAliveStatus();
 		
 		pointStack[rollNum] = Integer.parseInt(rolledPin);	//포인트스택에 차곡차곡 포인트들을 집어넣는다. 
+		
+		
 	}
 	
 
