@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Frame {
-	public ArrayList<Integer> pointList = new ArrayList<Integer>();
+	PointStack pointStack2 = new PointStack();
+	
+	public ArrayList<Integer> pointList = new ArrayList<Integer>();	//프레임 하나당 구한 포인트들 리스트 
 
 	int frameNum=0;	//프레임 번호
 	int framePart=0;	//몇번째 투구 
@@ -28,15 +30,11 @@ public class Frame {
 		while(frameAliveStatus()){		//프레임이 죽을때까지(false가 될때까지) 돈다. 
 			rollDisplayFrame();
 			frameAliveStatus();
-//			System.out.println(Display.scores);
+			System.out.println(Display.scores);
 			
 			if(frameAliveStatus()==false){
 				Display.statusArray[frameNum] = status;	//상태 배열 .
 				Display.startNum[frameNum] = rollNum+1;	//프레임을 빠져나갈때마다 그 프레임 시작위치를 저장해놓는다.
-				display.getScore2(frameNum-1, rollNum);		
-				if(frameNum!=1){
-					System.out.println(Display.scores);	//scoreBoard 출력 
-				}
 				return;
 			}
 		}
@@ -53,6 +51,7 @@ public class Frame {
 		roll(rolledPin); 	//핀 넘어뜨림
 		this.rolledPin = Integer.valueOf(rolledPin);
 		
+		pointStack2.putPoint(Integer.valueOf(rolledPin));
 
 		PointSymbol pointSymbol = new PointSymbol(pointList.get(framePart-1), status);
 		display.myStatus(frameNum, framePart, pointSymbol.getSymbol());	//화면을 보여줌.
@@ -95,6 +94,8 @@ public class Frame {
 			leftPins = 10-framePoint;
 		}
 		frameAliveStatus();
+		
+//		pointStack2.putPoint(Integer.parseInt(rolledPin));
 		
 		pointStack[rollNum] = Integer.parseInt(rolledPin);	//포인트스택에 차곡차곡 포인트들을 집어넣는다. 
 		

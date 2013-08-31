@@ -14,37 +14,38 @@ public class Display {
 	static int[] startNum = new int[11];
 	static String[] statusArray = new String[11];
 	
-	//새로짜는코드 
-	static ArrayList<Integer> stackList= new ArrayList<Integer>();
 	
-	public void getScore2(int frameNum, int rollNum){
-		int start = startNum[frameNum]; 
-		System.out.println("@start: " + start);
-		System.out.println("@stackstack: " + Frame.pointStack[start]);
-		while(true){
-			stackList.add(Frame.pointStack[start]);
-			start++;
-			
-			System.out.println("@@stackList: ");
-			for(int i : stackList)
-				System.out.println(i);
-
-			if(Display.stackList.size()==3){
-				if(Display.stackList.get(0) == 10 || (Display.stackList.get(0) + Display.stackList.get(1)) == 10){
-					frameScore = Display.stackList.get(0) + Display.stackList.get(1) + Display.stackList.get(2);
-					
-				} else
-					frameScore = Display.stackList.get(0) + Display.stackList.get(1);
-				stackList.clear();
-				finalScore+=frameScore;
-				scores.append(finalScore + " ");	//받은 포인트를 맞는 부분에 넣어준다.
-				
-				return;
-			}
-		}
-	}
-	
-	//새로짜는코드end 
+//	//새로짜는코드 
+//	static ArrayList<Integer> stackList= new ArrayList<Integer>();
+//	
+//	public void getScore2(int frameNum, int rollNum){
+//		int start = startNum[frameNum]; 
+//		System.out.println("@start: " + start);
+//		System.out.println("@stackstack: " + Frame.pointStack[start]);
+//		while(true){
+//			stackList.add(Frame.pointStack[start]);
+//			start++;
+//			
+//			System.out.println("@@stackList: ");
+//			for(int i : stackList)
+//				System.out.println(i);
+//
+//			if(Display.stackList.size()==3){
+//				if(Display.stackList.get(0) == 10 || (Display.stackList.get(0) + Display.stackList.get(1)) == 10){
+//					frameScore = Display.stackList.get(0) + Display.stackList.get(1) + Display.stackList.get(2);
+//					
+//				} else
+//					frameScore = Display.stackList.get(0) + Display.stackList.get(1);
+//				stackList.clear();
+//				finalScore+=frameScore;
+//				scores.append(finalScore + " ");	//받은 포인트를 맞는 부분에 넣어준다.
+//				
+//				return;
+//			}
+//		}
+//	}
+//	
+//	//새로짜는코드end 
 	
 	
 	
