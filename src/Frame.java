@@ -51,7 +51,7 @@ public class Frame {
 		roll(rolledPin); 	//핀 넘어뜨림
 		this.rolledPin = Integer.valueOf(rolledPin);
 		
-		pointStack2.putPoint(Integer.valueOf(rolledPin));
+		pointStack2.putPoint(Integer.valueOf(rolledPin), frameNum);
 
 		PointSymbol pointSymbol = new PointSymbol(pointList.get(framePart-1), status);
 		display.myStatus(frameNum, framePart, pointSymbol.getSymbol());	//화면을 보여줌.

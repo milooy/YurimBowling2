@@ -24,7 +24,7 @@ public class BowlingGame {
 //		Frame frame= new Frame10(10);
 //		frame.runrun();
 		
-		System.out.printf("						Game Over ^o^~ You got %d points!", Display.finalScore);
+		System.out.printf("						Game Over ^o^~ You got %d points!", PointStack.finalPoint);
 	}
 
 

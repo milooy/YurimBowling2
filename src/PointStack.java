@@ -9,13 +9,18 @@ public class PointStack {
 
 	
 	
-	public void putPoint(int rolledPin){
-		pointStack.add(rolledPin);
+	public void putPoint(int rolledPin, int frameNum){
+		pointStack.add(rolledPin);	//굴릴때마다 포인트스택에 점수를 넣어준다.
 		
-		System.out.println("This is pointStack----");
-		for(int i : pointStack)
-			System.out.print(i + " ");
-		System.out.println();
+		while(frameNum==10 && pointStack.size()==2){
+			if(pointStack.get(0) + pointStack.get(1) <10){
+				finalPoint+=pointStack.get(0) + pointStack.get(1);
+				Display.scores.append(finalPoint + " ");	
+			}
+			break;
+		}
+		
+		System.out.println("FrameNum: " + frameNum);
 		
 		
 		if(pointStack.size()==3){
@@ -23,6 +28,7 @@ public class PointStack {
 			int point0 = pointStack.get(0);
 			int point1 = pointStack.get(1);
 			int point2 = pointStack.get(2);
+			
 			
 			
 			if(pointStack.get(0)==10){	//젤 아래꺼가 10일때 
@@ -46,14 +52,7 @@ public class PointStack {
 			finalPoint+=point;
 			Display.scores.append(finalPoint + " ");	//받은 포인트를 맞는 부분에 넣어준다.
 		}
+		
 	}
-	
-//	public boolean isFull(){
-//		if(pointStack.size()==3)
-//			return true;
-//		else
-//			return false;
-//	}
-
-
 }
+
